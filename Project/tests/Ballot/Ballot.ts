@@ -114,9 +114,7 @@ describe("Ballot", function () {
     });
   });
 
-  describe("when the an attacker interact with the vote function in the contract", function () {});
-
-  describe("when the an attacker interact with the delegate function in the contract", function () {
+  describe("when the an attacker interact with the vote function in the contract", function () {
     it("attacker with no voting right cannot vote ", async function () {
       const attacker = accounts[1];
       await expect(ballotContract.connect(attacker).vote(2)).to.be.revertedWith(
@@ -147,6 +145,13 @@ describe("Ballot", function () {
     //     await ballotContract.connect(attacker).vote(falseVote)
     //   ).to.be.revertedWith("");
     // });
+  });
+
+  describe("when the an attacker interact with the delegate function in the contract", function () {
+    // TODO
+    it("is not implemented", async function () {
+      throw new Error("Not implemented");
+    });
   });
 
   describe("when someone interact with the winningProposal function before any votes are cast", function () {
