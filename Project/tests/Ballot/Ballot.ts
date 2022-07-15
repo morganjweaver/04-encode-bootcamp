@@ -20,7 +20,7 @@ async function giveRightToVote(ballotContract: Ballot, voterAddress: any) {
 
 describe("Ballot", function () {
   let ballotContract: Ballot;
-  let accounts: any[];
+  let accounts: any[]; // deployer always accounts[0]
 
   beforeEach(async function () {
     accounts = await ethers.getSigners();
