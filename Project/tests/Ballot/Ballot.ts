@@ -87,9 +87,16 @@ describe("Ballot", function () {
   });
 
   describe("when the voter interact with the vote function in the contract", function () {
-    // TODO
-    it("is not implemented", async function () {
-      throw new Error("Not implemented");
+    it("voter with voting rights can vote", async function () {
+      const voterAddress = accounts[1].address;
+      const tx1 = await ballotContract.giveRightToVote(voterAddress);
+      await tx1.wait();
+      const tx2 = await ballotContract.connect(accounts[1]).vote(2);
+      await tx2.wait();
+
+      const voter = await ballotContract.voters(voterAddress);
+      expect(voter.vote.toNumber()).to.eq(2);
+      expect(voter.voted).to.be.true;
     });
   });
 
