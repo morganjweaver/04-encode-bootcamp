@@ -114,18 +114,39 @@ describe("Ballot", function () {
     });
   });
 
-  describe("when the an attacker interact with the vote function in the contract", function () {
-    // TODO
-    it("is not implemented", async function () {
-      throw new Error("Not implemented");
-    });
-  });
+  describe("when the an attacker interact with the vote function in the contract", function () {});
 
   describe("when the an attacker interact with the delegate function in the contract", function () {
-    // TODO
-    it("is not implemented", async function () {
-      throw new Error("Not implemented");
+    it("attacker with no voting right cannot vote ", async function () {
+      const attacker = accounts[1];
+      await expect(ballotContract.connect(attacker).vote(2)).to.be.revertedWith(
+        "Has no right to vote"
+      );
     });
+
+    it("attacker cannot vote twice", async function () {
+      const attacker = accounts[1];
+      const tx1 = await ballotContract.giveRightToVote(attacker.address);
+      await tx1.wait();
+      const tx2 = await ballotContract.connect(attacker).vote(2);
+      await tx2.wait();
+      await expect(ballotContract.connect(attacker).vote(2)).to.be.revertedWith(
+        "Already voted."
+      );
+    });
+
+    // ************************************************************
+    // ************ Don't know how to expect this case ************
+    // ************************************************************
+    // it("attacker cannot vote on something that is not in proposals", async function () {
+    //   const attacker = accounts[1];
+    //   const falseVote = PROPOSALS.length;
+    //   const tx1 = await ballotContract.giveRightToVote(attacker.address);
+    //   await tx1.wait();
+    //   expect(
+    //     await ballotContract.connect(attacker).vote(falseVote)
+    //   ).to.be.revertedWith("");
+    // });
   });
 
   describe("when someone interact with the winningProposal function before any votes are cast", function () {
