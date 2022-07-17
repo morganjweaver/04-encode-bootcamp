@@ -58,8 +58,13 @@ Running scripts:
    Completed
    Contract deployed at 0x5e3c9631202a082499AC979D1E6B39B2cd4E5E46
    ```
+   
+2. **Query proposals**:
 
-2. **Give voting rights**:
+   *yarn ts-node scripts/Ballot/queryProposals.ts 0x5e3c9631202a082499AC979D1E6B39B2cd4E5E46*
+   
+
+3. **Give voting rights**:
 
    *yarn ts-node scripts/Ballot/giveVotingRights.ts "contract address" "voter address"*
    
@@ -72,7 +77,7 @@ Running scripts:
    Transaction completed. Hash: 0xcc52d22e7b26d98e09acfa9da0eb7b8de1b0aec5f8ac0402f6975d064a36d766
    ```
    
-3. **Delegate vote**:
+4. **Delegate vote**:
 
    *yarn ts-node scripts/Ballot/delegate.ts "contract address" "delegate address"*
    
@@ -85,7 +90,7 @@ Running scripts:
    Transaction completed. Hash: 0xd244b01165751fc962f2a25d0d231a60d7b2b1d8e95326314506a2cb727bad21
    ```
    
-4. **Cast vote**:
+5. **Cast vote**:
 
    *yarn ts-node scripts/Ballot/castVote.ts "contract address" "proposal number"*
    
@@ -97,7 +102,7 @@ Running scripts:
    Transaction completed. Hash: 0x8dcf69d4d5342a9d529344161f241c1a6d37164672297d0d9d5753e3d9f633e5
    ```
    
-4. **Query voting result**:
+6. **Query voting result**:
 
    *yarn ts-node scripts/Ballot/queryResult.ts "contract address"*
    
