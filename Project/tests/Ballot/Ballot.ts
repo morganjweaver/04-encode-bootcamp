@@ -20,7 +20,7 @@ async function giveRightToVote(ballotContract: Ballot, voterAddress: any) {
 
 describe("Ballot", function () {
   let ballotContract: Ballot;
-  let accounts: any[];
+  let accounts: any[]; // deployer always accounts[0]
 
   beforeEach(async function () {
     accounts = await ethers.getSigners();
@@ -96,14 +96,39 @@ describe("Ballot", function () {
 
       const voter = await ballotContract.voters(voterAddress);
       expect(voter.vote.toNumber()).to.eq(2);
+      // eslint-disable-next-line no-unused-expressions
       expect(voter.voted).to.be.true;
     });
   });
 
-  describe("when the voter interact with the delegate function in the contract", function () {
-    // TODO
-    it("is not implemented", async function () {
-      throw new Error("Not implemented");
+  describe("when the voter interacts with the delegate function in the contract", function () {
+    it("succeeds appropriately on Happy Path", async function () {
+      const voterAddress = accounts[0].address;
+      const delegateAddress = accounts[1].address;
+      console.log(`ADDRESS?:  ${delegateAddress}`);
+      // const tx1 = await ballotContract.giveRightToVote(voterAddress);
+      // await tx1.wait(); // NOT NEEDED BC SENDER IS CHAIRPORSON
+      const tx2 = await ballotContract.giveRightToVote(delegateAddress);
+      await tx2.wait();
+      const tx3 = await ballotContract.delegate(delegateAddress);
+      await tx3.wait();
+
+      const voter = await ballotContract.voters(voterAddress);
+      console.log(`VOTER:    ${voter.delegate}`);
+      console.log(`VOTER ${voterAddress} DELEGATES TO ${voter.delegate}`);
+      expect(voter.delegate).to.equal(delegateAddress);
+    });
+    it("errors appropriately when sender assigns to self", async function () {
+      const voterAddress = accounts[0].address;
+
+      await expect(ballotContract.delegate(voterAddress)).to.be.revertedWith(
+        "Self-delegation is disallowed."
+      );
+    });
+
+    it("errors appropriately for a target address that cannot actually vote", async function () {
+      const delegateAddress = accounts[1].address;
+      await expect(ballotContract.delegate(delegateAddress)).to.be.reverted;
     });
   });
 
