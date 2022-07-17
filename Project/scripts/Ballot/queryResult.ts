@@ -33,7 +33,10 @@ async function main() {
     ballotJson.abi,
     signer
   ) as Ballot;
-  const winner = await ballotContract.winnerName();
+
+  const winner = ethers.utils.parseBytes32String(
+    await ballotContract.winnerName()
+  );
   console.log(`The winning proposal is ${winner}`);
 }
 
