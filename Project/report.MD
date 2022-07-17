@@ -108,4 +108,9 @@ Running scripts:
    *yarn ts-node scripts/Ballot/queryResult.ts "contract address"*
    
    Console log:
+   ```
+   Wallet balance 0.6843752091622013
+   Attaching ballot contract interface to address 0x5e3c9631202a082499AC979D1E6B39B2cd4E5E46
+   The winning proposal is Pizza
+   ```
 
