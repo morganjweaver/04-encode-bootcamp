@@ -29,10 +29,10 @@ Transactions:
 | Tx Hash                                                            | From                                       | To  | Action            | Notes             |
 | ------------------------------------------------------------------ | ------------------------------------------ | --- | ----------------- | ----------------- |
 | 0x7eb51f7ddc79fa915e20d0659bafa6f4ebb16c2b841f2ae2f479c2ae39dc3ec3 | 0x5214990E840dEB4581760606a9970a0186AAa7F3 |     | run deployment.ts | Contract Creation |
-|0xcc52d22e7b26d98e09acfa9da0eb7b8de1b0aec5f8ac0402f6975d064a36d766|0x5214990E840dEB4581760606a9970a0186AAa7F3|0x97c44088Bb74583A03E0d21E9e56cdae60a306B0|run giveVotingRights.ts|Giving voting rights|
-|0xcc52d22e7b26d98e09acfa9da0eb7b8de1b0aec5f8ac0402f6975d064a36d766|0x5214990E840dEB4581760606a9970a0186AAa7F3|0x6E39C86191D1D2581a24198b06a3f6dacE03aF91|run giveVotingRights.ts|Giving voting rights|
-|0xcc52d22e7b26d98e09acfa9da0eb7b8de1b0aec5f8ac0402f6975d064a36d766|0x5214990E840dEB4581760606a9970a0186AAa7F3|0xcd6B97E773fD588Ddf9462dD7e4f9869e120acFf|run giveVotingRights.ts|Giving voting rights|
-|                                                                    |                                            |     |                   |                   |
+|0xcc52d22e7b26d98e09acfa9da0eb7b8de1b0aec5f8ac0402f6975d064a36d766|0x5214990E840dEB4581760606a9970a0186AAa7F3|0x5e3c9631202a082499AC979D1E6B39B2cd4E5E46|run giveVotingRights.ts|Giving voting rights|
+|0xf59320222f1feb6172e150834817388a43bd67dc6ab7f7ca325fe4fb777b907e|0x5214990E840dEB4581760606a9970a0186AAa7F3|0x5e3c9631202a082499AC979D1E6B39B2cd4E5E46|run giveVotingRights.ts|Giving voting rights|
+|0x40662d409cddb2be7cfbe3bedb6b44cad1cb467286a05bae1031c7aa92c57dc1|0x5214990E840dEB4581760606a9970a0186AAa7F3|0x5e3c9631202a082499AC979D1E6B39B2cd4E5E46|run giveVotingRights.ts|Giving voting rights|
+|0xdd4e26416610b66a1654845b1763d8508aacc5e72e3f742fa86094137c6b6d3a|0x6e39c86191d1d2581a24198b06a3f6dace03af91|0x5e3c9631202a082499AC979D1E6B39B2cd4E5E46|run castVote.ts|Vote on proposal|
 
 Running scripts:
 
@@ -59,8 +59,19 @@ Running scripts:
    
    ```Console log:
    Wallet balance 0.03614196201637045
-   Attaching ballot contract interface to address 0x5e3c9631202a082499AC979D1E6B39B2cd4E5E46
-   Giving right to vote to 0x97c44088Bb74583A03E0d21E9e56cdae60a306B0
+   Attaching ballot contract interface to address *"contract address"*
+   Giving right to vote to *"voter address"*
+   Awaiting confirmations
+   Transaction completed. Hash: 0xcc52d22e7b26d98e09acfa9da0eb7b8de1b0aec5f8ac0402f6975d064a36d766```
+   
+2. **Delegate vote**:
+
+   *yarn ts-node scripts/Ballot/giveVotingRights.ts "contract address" "voter address"*
+   
+   ```Console log:
+   Wallet balance 0.03614196201637045
+   Attaching ballot contract interface to address *"contract address"*
+   Giving right to vote to *"voter address"*
    Awaiting confirmations
    Transaction completed. Hash: 0xcc52d22e7b26d98e09acfa9da0eb7b8de1b0aec5f8ac0402f6975d064a36d766```
 
