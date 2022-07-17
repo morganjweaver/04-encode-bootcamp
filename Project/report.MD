@@ -95,5 +95,9 @@ Running scripts:
    Transaction completed. Hash: 0x8dcf69d4d5342a9d529344161f241c1a6d37164672297d0d9d5753e3d9f633e5
    ```
    
+4. **Query voting result**:
 
+   *yarn ts-node scripts/Ballot/queryResult.ts "contract address"*
+   
+   Console log:
 
