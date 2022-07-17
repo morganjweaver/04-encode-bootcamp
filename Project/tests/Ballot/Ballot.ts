@@ -133,9 +133,12 @@ describe("Ballot", function () {
   });
 
   describe("when the an attacker interact with the giveRightToVote function in the contract", function () {
-    // TODO
-    it("is not implemented", async function () {
-      throw new Error("Not implemented");
+    it("attacker cannot give right to vote ", async function () {
+      const attacker = accounts[1];
+      const voterAddress = accounts[2].address;
+      await expect(ballotContract.connect(attacker).giveRightToVote(voterAddress)).to.be.revertedWith(
+        "Only chairperson can give right to vote."
+      );
     });
   });
 
@@ -173,37 +176,50 @@ describe("Ballot", function () {
   });
 
   describe("when the an attacker interact with the delegate function in the contract", function () {
-    // TODO
-    it("is not implemented", async function () {
-      throw new Error("Not implemented");
+    it("attacker cannot delegate vote", async function () {
+      const attacker = accounts[1];
+      const voterAddress = accounts[2].address;
+      await expect(ballotContract.connect(attacker).delegate(voterAddress)).to.be.revertedWith("");
     });
   });
 
   describe("when someone interact with the winningProposal function before any votes are cast", function () {
-    // TODO
-    it("is not implemented", async function () {
-      throw new Error("Not implemented");
+    it("winning proposal should be the first proposal", async function () {
+      const proposal = await ballotContract.winningProposal();
+      await expect(proposal).to.eq(0);
     });
   });
 
   describe("when someone interact with the winningProposal function after one vote is cast for the first proposal", function () {
-    // TODO
-    it("is not implemented", async function () {
-      throw new Error("Not implemented");
+    it("winning proposal should be the first proposal", async function () {
+      const voterAddress = accounts[1].address;
+      const tx1 = await ballotContract.giveRightToVote(voterAddress);
+      await tx1.wait();
+      const tx2 = await ballotContract.connect(accounts[1]).vote(0);
+      await tx2.wait();
+
+      const proposal = await ballotContract.winningProposal();
+      await expect(proposal).to.eq(0);
     });
   });
 
   describe("when someone interact with the winnerName function before any votes are cast", function () {
-    // TODO
-    it("is not implemented", async function () {
-      throw new Error("Not implemented");
+    it("winner name should be equal to the first proposal name", async function () {
+      const winnerName = await ballotContract.winnerName();
+      await expect(winnerName).to.equal(ethers.utils.formatBytes32String(PROPOSALS[0]));
     });
   });
 
   describe("when someone interact with the winnerName function after one vote is cast for the first proposal", function () {
-    // TODO
-    it("is not implemented", async function () {
-      throw new Error("Not implemented");
+    it("winner name should be equal to the first proposal name", async function () {
+      const voterAddress = accounts[1].address;
+      const tx1 = await ballotContract.giveRightToVote(voterAddress);
+      await tx1.wait();
+      const tx2 = await ballotContract.connect(accounts[1]).vote(0);
+      await tx2.wait();
+      
+      const winnerName = await ballotContract.winnerName();
+      await expect(winnerName).to.equal(ethers.utils.formatBytes32String(PROPOSALS[0]));
     });
   });
 
