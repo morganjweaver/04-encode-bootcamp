@@ -18,16 +18,16 @@ Proposals:
 
 Voters Appointed:
 
-1.
-2.
+1. 0x5214990E840dEB4581760606a9970a0186AAa7F3 (Chairperson)
+2. 0x97c44088Bb74583A03E0d21E9e56cdae60a306B0
 3.
 4.
 5.
 
 Transactions:
 
-| Tx Hash | From | To  | Action | Notes |
-| ------- | ---- | --- | ------ | ----- |
-|         |      |     |        |       |
-|         |      |     |        |       |
-|         |      |     |        |       |
+| Tx Hash | From                                       | To  | Action              | Notes |
+| ------- | ------------------------------------------ | --- | ------------------- | ----- |
+|         | 0x5214990E840dEB4581760606a9970a0186AAa7F3 |     | Contract Deployment |       |
+|         |                                            |     |                     |       |
+|         |                                            |     |                     |       |
