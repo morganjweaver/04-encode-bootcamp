@@ -40,27 +40,27 @@ Running scripts:
 
    *yarn ts-node scripts/Ballot/deployment.ts Ramen Pizza Burger Tacos Ražnjići*
    
-   Console log:
-   -Wallet balance 0.03790467202459643
-   -Deploying Ballot contract
-   -Proposals:
-   -Proposal N. 1: Ramen
-   -Proposal N. 2: Pizza
-   -Proposal N. 3: Burger
-   -Proposal N. 4: Tacos
-   -Proposal N. 5: Ražnjići
-   -Awaiting confirmations
-   -Completed
-   -Contract deployed at 0x5e3c9631202a082499AC979D1E6B39B2cd4E5E46
+   Console log:<br/>
+   Wallet balance 0.03790467202459643<br/>
+   Deploying Ballot contract<br/>
+   Proposals:<br/>
+   Proposal N. 1: Ramen<br/>
+   Proposal N. 2: Pizza<br/>
+   Proposal N. 3: Burger<br/>
+   Proposal N. 4: Tacos<br/>
+   Proposal N. 5: Ražnjići<br/>
+   Awaiting confirmations<br/>
+   Completed<br/>
+   Contract deployed at 0x5e3c9631202a082499AC979D1E6B39B2cd4E5E46<br/>
 
 2. **Give voting rights**:
 
    *yarn ts-node scripts/Ballot/giveVotingRights.ts <contract address> <voter address>*
    
-   Console log:
+   ```Console log:
    Wallet balance 0.03614196201637045
    Attaching ballot contract interface to address 0x5e3c9631202a082499AC979D1E6B39B2cd4E5E46
    Giving right to vote to 0x97c44088Bb74583A03E0d21E9e56cdae60a306B0
    Awaiting confirmations
-   Transaction completed. Hash: 0xcc52d22e7b26d98e09acfa9da0eb7b8de1b0aec5f8ac0402f6975d064a36d766
+   Transaction completed. Hash: 0xcc52d22e7b26d98e09acfa9da0eb7b8de1b0aec5f8ac0402f6975d064a36d766```
 
