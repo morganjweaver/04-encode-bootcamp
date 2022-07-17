@@ -40,18 +40,18 @@ Running scripts:
 
    *yarn ts-node scripts/Ballot/deployment.ts Ramen Pizza Burger Tacos Ražnjići*
    
-   Console log:<br/>
-   Wallet balance 0.03790467202459643<br/>
-   Deploying Ballot contract<br/>
-   Proposals:<br/>
-   Proposal N. 1: Ramen<br/>
-   Proposal N. 2: Pizza<br/>
-   Proposal N. 3: Burger<br/>
-   Proposal N. 4: Tacos<br/>
-   Proposal N. 5: Ražnjići<br/>
-   Awaiting confirmations<br/>
-   Completed<br/>
-   Contract deployed at 0x5e3c9631202a082499AC979D1E6B39B2cd4E5E46<br/>
+   ```Console log:
+   Wallet balance 0.03790467202459643
+   Deploying Ballot contract
+   Proposals:
+   Proposal N. 1: Ramen
+   Proposal N. 2: Pizza
+   Proposal N. 3: Burger
+   Proposal N. 4: Tacos
+   Proposal N. 5: Ražnjići
+   Awaiting confirmations
+   Completed
+   Contract deployed at 0x5e3c9631202a082499AC979D1E6B39B2cd4E5E46```
 
 2. **Give voting rights**:
 
