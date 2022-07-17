@@ -119,15 +119,16 @@ describe("Ballot", function () {
       expect(voter.delegate).to.equal(delegateAddress);
     });
     it("errors appropriately when sender assigns to self", async function () {
-      throw new Error("Not implemented");
-    });
+      const voterAddress = accounts[0].address;
 
-    it("errors appropriately when sender has no voting rights", async function () {
-      throw new Error("Not implemented");
+      await expect(ballotContract.delegate(voterAddress)).to.be.revertedWith(
+        "Self-delegation is disallowed."
+      );
     });
 
     it("errors appropriately for a target address that cannot actually vote", async function () {
-      throw new Error("Not implemented");
+      const delegateAddress = accounts[1].address;
+      await expect(ballotContract.delegate(delegateAddress)).to.be.reverted;
     });
   });
 
