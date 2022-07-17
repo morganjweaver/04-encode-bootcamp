@@ -64,14 +64,13 @@ Running scripts:
    Awaiting confirmations
    Transaction completed. Hash: 0xcc52d22e7b26d98e09acfa9da0eb7b8de1b0aec5f8ac0402f6975d064a36d766```
    
-2. **Delegate vote**:
+3. **Delegate vote**:
 
-   *yarn ts-node scripts/Ballot/giveVotingRights.ts "contract address" "voter address"*
+   *yarn ts-node scripts/Ballot/delegate.ts "contract address" "delegate address"*
    
-   ```Console log:
-   Wallet balance 0.03614196201637045
-   Attaching ballot contract interface to address *"contract address"*
-   Giving right to vote to *"voter address"*
-   Awaiting confirmations
-   Transaction completed. Hash: 0xcc52d22e7b26d98e09acfa9da0eb7b8de1b0aec5f8ac0402f6975d064a36d766```
+4. **Cast vote**:
+
+   *yarn ts-node scripts/Ballot/castVote.ts "contract address" "proposal number"*
+   
+
 
