@@ -33,6 +33,7 @@ Transactions:
 |0xf59320222f1feb6172e150834817388a43bd67dc6ab7f7ca325fe4fb777b907e|0x5214990E840dEB4581760606a9970a0186AAa7F3|0x5e3c9631202a082499AC979D1E6B39B2cd4E5E46|run giveVotingRights.ts|Giving voting rights|
 |0x40662d409cddb2be7cfbe3bedb6b44cad1cb467286a05bae1031c7aa92c57dc1|0x5214990E840dEB4581760606a9970a0186AAa7F3|0x5e3c9631202a082499AC979D1E6B39B2cd4E5E46|run giveVotingRights.ts|Giving voting rights|
 |0xdd4e26416610b66a1654845b1763d8508aacc5e72e3f742fa86094137c6b6d3a|0x6e39c86191d1d2581a24198b06a3f6dace03af91|0x5e3c9631202a082499AC979D1E6B39B2cd4E5E46|run castVote.ts|Vote on proposal|
+|0x8dcf69d4d5342a9d529344161f241c1a6d37164672297d0d9d5753e3d9f633e5|0x5214990e840deb4581760606a9970a0186aaa7f3|0x5e3c9631202a082499AC979D1E6B39B2cd4E5E46|run castVote.ts|Vote on proposal| 
 
 Running scripts:
 
@@ -71,6 +72,12 @@ Running scripts:
 4. **Cast vote**:
 
    *yarn ts-node scripts/Ballot/castVote.ts "contract address" "proposal number"*
+   
+   ```Console log:
+   Wallet balance 0.03592300551520268
+   Attaching ballot contract interface to address *"contract address"* *"proposal number"*
+   Awaiting confirmations
+   Transaction completed. Hash: 0x8dcf69d4d5342a9d529344161f241c1a6d37164672297d0d9d5753e3d9f633e5```
    
 
 
