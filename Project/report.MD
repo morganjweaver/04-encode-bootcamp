@@ -55,7 +55,7 @@ Running scripts:
 
 2. **Give voting rights**:
 
-   *yarn ts-node scripts/Ballot/giveVotingRights.ts <contract address> <voter address>*
+   *yarn ts-node scripts/Ballot/giveVotingRights.ts "contract address" "voter address"*
    
    ```Console log:
    Wallet balance 0.03614196201637045
