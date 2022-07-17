@@ -79,6 +79,7 @@ Running scripts:
    Wallet balance 0.05
    Attaching ballot contract interface to address 0x5e3c9631202a082499AC979D1E6B39B2cd4E5E46
    Awaiting confirmations
+   About to delegate "voter address"'s vote to "delegate address" for contract "contract address"
    Transaction completed. Hash: 0xd244b01165751fc962f2a25d0d231a60d7b2b1d8e95326314506a2cb727bad21
    ```
    
