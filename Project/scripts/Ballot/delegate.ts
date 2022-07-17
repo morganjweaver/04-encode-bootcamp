@@ -15,7 +15,7 @@ async function main() {
       ? ethers.Wallet.fromMnemonic(process.env.MNEMONIC)
       : new ethers.Wallet(process.env.PRIVATE_KEY ?? EXPOSED_KEY);
   console.log(`Using address ${wallet.address}`);
-  const provider = ethers.providers.getDefaultProvider("ropsten");
+  const provider = ethers.providers.getDefaultProvider("goerli");
   const signer = wallet.connect(provider);
   const balanceBN = await signer.getBalance();
   const balance = Number(ethers.utils.formatEther(balanceBN));
@@ -36,9 +36,9 @@ async function main() {
     signer
   ) as Ballot;
 
-//   console.log(
-//     `About to delegate ${signer.address}'s vote to ${voterAddress} for contract ${ballotAddress}`
-//   );
+  console.log(
+    `About to delegate ${signer.address}'s vote to ${voterAddress} for contract ${ballotAddress}`
+  );
 
   const tx = await ballotContract.delegate(voterAddress);
   console.log("Awaiting confirmations");

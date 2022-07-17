@@ -5,7 +5,7 @@ import * as ballotJson from "../../artifacts/contracts/Ballot.sol/Ballot.json";
 // This key is already public on Herong's Tutorial Examples - v1.03, by Dr. Herong Yang
 // Do never expose your keys like this
 
-// DEPLOYS TO ROPSTEN, NOT HARDHAT SIM!!
+// DEPLOYS TO GOERLI, NOT HARDHAT SIM!!
 
 const EXPOSED_KEY =
   "8da4ef21b864d2cc526dbdb2a120bd2874c36c9d0a1fb7f8c63d7f7a8b41de8f";
