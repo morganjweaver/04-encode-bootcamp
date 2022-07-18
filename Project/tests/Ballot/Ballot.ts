@@ -224,9 +224,42 @@ describe("Ballot", function () {
   });
 
   describe("when someone interact with the winningProposal function and winnerName after 5 random votes are cast for the proposals", function () {
-    // TODO
-    it("is not implemented", async function () {
-      throw new Error("Not implemented");
+    let winningProposalIndex = 0;
+
+    beforeEach(async function () {
+      const voters = [accounts[1], accounts[2], accounts[3], accounts[4], accounts[5]];
+
+      await (await ballotContract.giveRightToVote(voters[0].address)).wait();
+      await (await ballotContract.giveRightToVote(voters[1].address)).wait();
+      await (await ballotContract.giveRightToVote(voters[2].address)).wait();
+      await (await ballotContract.giveRightToVote(voters[3].address)).wait();
+      await (await ballotContract.giveRightToVote(voters[4].address)).wait();
+      
+      for (let index = 0; index < voters.length; index++) { 
+        let proposalIndex = Math.floor(Math.random() * PROPOSALS.length);
+        const tx2 = await ballotContract.connect(voters[index]).vote(proposalIndex);
+        await tx2.wait(); 
+      }
+      
+      let winningVoteCount = 0;
+      for (let index = 0; index < PROPOSALS.length; index++) { 
+        const proposal = await ballotContract.proposals(index);
+        
+        if (proposal.voteCount.gt(winningVoteCount)) {
+          winningVoteCount = proposal.voteCount.toNumber();
+          winningProposalIndex = index;
+        }
+      }
+    });
+
+    it("winning proposal should be the one with most votes", async function () {
+      const proposal = await ballotContract.winningProposal();
+      await expect(proposal).to.eq(winningProposalIndex);
+    });
+
+    it("winning name should be the proposal name with most votes", async function () {
+      const winnerName = await ballotContract.winnerName();
+      await expect(winnerName).to.equal(ethers.utils.formatBytes32String(PROPOSALS[winningProposalIndex]));
     });
   });
 });
