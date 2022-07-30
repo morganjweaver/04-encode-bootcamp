@@ -1,8 +1,18 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity >=0.8.0 <0.9.0;
 
-/// @title Voting with delegation.
+/// @title Simple voting contract
+/// @author Encode Bootcamp
+/// @notice Contract allows voters to propose and vote on topics
 contract Ballot {
+    event NewVoter(address indexed voter);
+
+    event Voted(
+        address indexed voter, 
+        uint256 indexed proposal,
+        uint256 weight, 
+        uint256 totalWeight);
+
     // This declares a new complex type which will
     // be used for variables later.
     // It will represent a single voter.
@@ -43,9 +53,10 @@ contract Ballot {
             proposals.push(Proposal({name: proposalNames[i], voteCount: 0}));
         }
     }
-
-    // Give `voter` the right to vote on this ballot.
-    // May only be called by `chairperson`.
+    
+    /// @notice Give `voter` the right to vote on this ballot.
+    /// @dev May only be called by `chairperson`/contract deployer
+    /// @param voter address of person to give voting right to
     function giveRightToVote(address voter) external {
         // If the first argument of `require` evaluates
         // to `false`, execution terminates and all
@@ -64,9 +75,12 @@ contract Ballot {
         require(!voters[voter].voted, "The voter already voted.");
         require(voters[voter].weight == 0);
         voters[voter].weight = 1;
+        emit NewVoter(voter);
     }
-
-    /// Delegate your vote to the voter `to`.
+    
+    /// @notice Delegate your vote to another address
+    /// @dev Can't delegate to self or if already voted
+    /// @param to address of another valid voter 
     function delegate(address to) external {
         // assigns reference
         Voter storage sender = voters[msg.sender];
@@ -108,8 +122,9 @@ contract Ballot {
         }
     }
 
-    /// Give your vote (including votes delegated to you)
-    /// to proposal `proposals[proposal].name`.
+    /// @notice Cast your vote and any votes delegated to you
+    /// @dev Explain to a developer any extra details
+    /// @param proposal index (starting from 0) of proposal to vote on
     function vote(uint256 proposal) external {
         Voter storage sender = voters[msg.sender];
         require(sender.weight != 0, "Has no right to vote");
@@ -121,6 +136,12 @@ contract Ballot {
         // this will throw automatically and revert all
         // changes.
         proposals[proposal].voteCount += sender.weight;
+        emit Voted(
+            msg.sender, 
+            proposal, 
+            sender.weight, 
+            proposals[proposal].voteCount
+            );
     }
 
     /// @dev Computes the winning proposal taking all
@@ -135,9 +156,10 @@ contract Ballot {
         }
     }
 
-    // Calls winningProposal() function to get the index
-    // of the winner contained in the proposals array and then
-    // returns the name of the winner
+    /// @notice Calls winningProposal() function to get the index of the winner 
+    /// contained in the proposals array and then returns the name of the winner
+    /// @dev Explain to a developer any extra details
+    /// @return winnerName_ string representation in bytes32 format of winning proposal
     function winnerName() external view returns (bytes32 winnerName_) {
         winnerName_ = proposals[winningProposal()].name;
     }

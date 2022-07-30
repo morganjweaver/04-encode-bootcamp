@@ -84,7 +84,15 @@ describe("Ballot", function () {
         giveRightToVote(ballotContract, voterAddress)
       ).to.be.revertedWith("");
     });
+
+    it("triggers the NewVoter event with addr of new voter", async function() {
+      await expect(ballotContract.giveRightToVote)
+        .to.emit(addressn, 'NewVoter')
+        .withArgs(address);
+    });
   });
+
+
 
   describe("when the voter interact with the vote function in the contract", function () {
     it("voter with voting rights can vote", async function () {
@@ -98,6 +106,14 @@ describe("Ballot", function () {
       expect(voter.vote.toNumber()).to.eq(2);
       // eslint-disable-next-line no-unused-expressions
       expect(voter.voted).to.be.true;
+    });
+    
+    it("triggers Voted event", async () => {
+      const voterAddress = accounts[1];
+      await giveRightToVote(ballotContract, voterAddress);
+      await expect(ballotContract.connect(accounts[1].vote(0)))
+        .to.emit(ballotContract, "Voted")
+        .withArgs(voterAddress, 0, 1, 1);
     });
   });
 
@@ -136,9 +152,9 @@ describe("Ballot", function () {
     it("attacker cannot give right to vote ", async function () {
       const attacker = accounts[1];
       const voterAddress = accounts[2].address;
-      await expect(ballotContract.connect(attacker).giveRightToVote(voterAddress)).to.be.revertedWith(
-        "Only chairperson can give right to vote."
-      );
+      await expect(
+        ballotContract.connect(attacker).giveRightToVote(voterAddress)
+      ).to.be.revertedWith("Only chairperson can give right to vote.");
     });
   });
 
