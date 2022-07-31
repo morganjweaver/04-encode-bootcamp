@@ -4,18 +4,12 @@ import * as ballotJson from "../../artifacts/contracts/Ballot.sol/Ballot.json";
 // eslint-disable-next-line node/no-missing-import
 import { Ballot } from "../../typechain";
 // eslint-disable-next-line node/no-missing-import
-import * as utils from "../../helpers/utils";
+import { getSigner, checkBalance } from "../../helpers/utils"; utils from "../../helpers/utils";
 
 async function main() {
-  const signer = utils.getSigner();
-  const balance = await utils.checkBalance(signer);
-  if(!balance){
+  const signer = getSigner();
+  if (!checkBalance(signer)) {
     return;
-  };
-  
-  console.log(`Wallet balance ${balance}`);
-  if (balance < 0.01) {
-    throw new Error("Not enough ether");
   }
   if (process.argv.length < 3) throw new Error("Ballot address missing");
   const ballotAddress = process.argv[2];
